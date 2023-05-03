@@ -1,5 +1,5 @@
 import Header from '@/components/common/header'
-import { GetStaticProps } from 'next'
+import { MainLayout } from '@/components/layout'
 // import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -7,9 +7,9 @@ import { useEffect, useState } from 'react'
 // I want it render from client side ONLY:
 // const Header = dynamic(() => import('@/components/common/header'), { ssr: false })
 
-export interface AboutProps {}
+export interface AboutPageProps {}
 
-export default function About(props: AboutProps) {
+export default function AboutPage(props: AboutPageProps) {
   const [postList, setPostList] = useState([])
   const router = useRouter()
 
@@ -55,6 +55,8 @@ export default function About(props: AboutProps) {
     </div>
   )
 }
+
+AboutPage.Layout = MainLayout
 
 export async function getStaticProps() {
   console.log('get static props')
