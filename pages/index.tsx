@@ -1,9 +1,24 @@
-import type { NextPage } from 'next'
+import { MainLayout } from '@/components/layout'
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { NextPageWithLayout } from '../models'
 import styles from '../styles/Home.module.css'
 
-const Home: NextPage = () => {
+const Home: NextPageWithLayout = () => {
+  const router = useRouter()
+
+  function goToDetailPage() {
+    router.push({
+      pathname: '/posts/[postId]',
+      query: {
+        postId: 123,
+        ref: 'social',
+      },
+    })
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -14,13 +29,16 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Welcome to NextJS, Huan</a>
+          Welcome to <a href="https://nextjs.org">NextJS, Huan</a>
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+          Get started by editing <code className={styles.code}>pages/index.js</code>
         </p>
+
+        <Link href="/about">Go to About Us</Link>
+
+        <button onClick={goToDetailPage}>Go to post detail page</button>
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
@@ -33,10 +51,7 @@ const Home: NextPage = () => {
             <p>Learn about Next.js in an interactive course with quizzes!</p>
           </a>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
+          <a href="https://github.com/vercel/next.js/tree/master/examples" className={styles.card}>
             <h2>Examples &rarr;</h2>
             <p>Discover and deploy boilerplate example Next.js projects.</p>
           </a>
@@ -46,9 +61,7 @@ const Home: NextPage = () => {
             className={styles.card}
           >
             <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
+            <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
           </a>
         </div>
       </main>
@@ -68,5 +81,7 @@ const Home: NextPage = () => {
     </div>
   )
 }
+
+Home.Layout = MainLayout
 
 export default Home
