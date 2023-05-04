@@ -1,12 +1,15 @@
 import { useAuth } from '@/hooks'
+import { useRouter } from 'next/router'
 
 export default function LoginPage() {
+  const router = useRouter()
   const { profile, login, logout } = useAuth({ revalidateOnMount: false })
 
   async function handleLoginClick() {
     try {
       await login()
       console.log('redirect to dashboard')
+      router.push('/about')
     } catch (error) {
       console.log('login failed', error)
     }
@@ -27,6 +30,7 @@ export default function LoginPage() {
       <p>Profile: {JSON.stringify(profile || {}, null, 4)}</p>
       <button onClick={handleLoginClick}>Login</button>&nbsp;|&nbsp;
       <button onClick={handleLogoutClick}>Logout</button>
+      <button onClick={() => router.push('/about')}>Go to About</button>
     </div>
   )
 }
