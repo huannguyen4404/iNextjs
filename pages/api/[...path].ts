@@ -2,6 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import httpProxy from 'http-proxy'
+import Cookies from 'cookies'
 
 // type Data = {
 //   name: string
@@ -19,7 +20,15 @@ const proxy = httpProxy.createProxyServer()
 export default function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   // wrap promise to solve issue: 'API resolved without sending a response for /api/...'
   return new Promise((resolve) => {
-    // clean up cookies
+    console.log('Proxy forwarding to API Server...')
+
+    const cookies = new Cookies(req, res)
+    const accessToken = cookies.get('access_token')
+    if (accessToken) {
+      req.headers.authorization = `Bearer ${accessToken}`
+    }
+
+    // clean up cookies before send to API server
     req.headers.cookie = ''
 
     proxy.web(req, res, {
