@@ -17,13 +17,20 @@ export const config = {
 const proxy = httpProxy.createProxyServer()
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<any>) {
-  // clean up cookies
-  req.headers.cookie = ''
+  // wrap promise to solve issue: 'API resolved without sending a response for /api/...'
+  return new Promise((resolve) => {
+    // clean up cookies
+    req.headers.cookie = ''
 
-  proxy.web(req, res, {
-    target: process.env.API_URL,
-    changeOrigin: true,
-    selfHandleResponse: false,
+    proxy.web(req, res, {
+      target: process.env.API_URL,
+      changeOrigin: true,
+      selfHandleResponse: false,
+    })
+
+    proxy.once('proxyRes', () => {
+      resolve(true)
+    })
   })
 
   // GET http://localhost:3001/api/students <- WORKED !
