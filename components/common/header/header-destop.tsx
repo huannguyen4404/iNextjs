@@ -1,9 +1,12 @@
 import { Box, Container, Link as LinkMui, Stack } from '@mui/material'
-import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { ROUTE_LIST } from './routes'
+import clsx from 'clsx'
+import Link from 'next/link'
 
-export function HeaderDesktop() {
+export interface HeaderDesktopProps {}
+
+export function HeaderDesktop(props: HeaderDesktopProps) {
   const router = useRouter()
 
   return (
@@ -11,14 +14,11 @@ export function HeaderDesktop() {
       <Container>
         <Stack direction="row" justifyContent="flex-end">
           {ROUTE_LIST.map((route) => (
-            <LinkMui
-              key={route.path}
-              href={route.path}
-              sx={{ ml: 2 }}
-              className={clsx({ active: router.pathname === route.path })}
-            >
-              {route.label}
-            </LinkMui>
+            <Link key={route.path} href={route.path} passHref legacyBehavior>
+              <LinkMui sx={{ ml: 2 }} className={clsx({ active: router.pathname === route.path })}>
+                {route.label}
+              </LinkMui>
+            </Link>
           ))}
         </Stack>
       </Container>
