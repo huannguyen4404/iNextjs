@@ -42,5 +42,16 @@ export const theme = createTheme({
         maxWidth: 'md',
       },
     },
+    MuiLink: {
+      defaultProps: { underline: 'hover' },
+      styleOverrides: {
+        root: {
+          color: 'black',
+          '&:hover, &.active': {
+            color: '#ff6464',
+          },
+        },
+      },
+    },
   },
 })
