@@ -1,9 +1,9 @@
+import { Post } from '@/models'
 import { Box, Container, Link as MuiLink, Stack, Typography } from '@mui/material'
 import Link from 'next/link'
 import { PostCard } from './post-card'
-import { Post } from '@/models'
 
-export function RecentPost() {
+export function RecentPosts() {
   const postList: Post[] = [
     {
       id: '1',
