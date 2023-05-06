@@ -1,6 +1,6 @@
 import avatar from '@/images/avatar.png'
 import { Box, Button, Container, Stack, Typography } from '@mui/material'
-import Image from 'next/image'
+import Image from "next/image"
 
 export function HeroSection() {
   return (
@@ -37,10 +37,17 @@ export function HeroSection() {
               borderRadius: '50%',
             }}
           >
-            <Image src={avatar} layout="responsive" alt="avatar" />
+            <Image
+              src={avatar}
+              alt="avatar"
+              sizes="100vw"
+              style={{
+                width: "100%",
+                height: "auto"
+              }} />
           </Box>
         </Stack>
       </Container>
     </Box>
-  )
+  );
 }
