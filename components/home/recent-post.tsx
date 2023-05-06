@@ -9,7 +9,7 @@ export function RecentPosts() {
       id: '1',
       slug: 'making-a-design',
       title: 'Making a design system from scratch',
-      publishedDate: '1648363391671',
+      publishedDate: '2022-06-18T12:00:00Z',
       tagList: ['Design', 'Pattern'],
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus eaque mollitia accusamus debitis consequatur praesentium laborum deserunt ab ullam inventore eligendi laudantium ipsam assumenda alias non voluptate sed, veniam pariatur?',
@@ -18,7 +18,7 @@ export function RecentPosts() {
       id: '2',
       slug: 'create-pixel-perfect',
       title: 'Creating pixel perfect icons in Figma',
-      publishedDate: '1648363391671',
+      publishedDate: '2022-06-18T12:00:00Z',
       tagList: ['Figma', 'Icon Design'],
       description:
         'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur quo consequatur, harum a praesentium soluta voluptatem, necessitatibus ut nam, aspernatur quidem! Illo magnam amet, quod molestiae reiciendis pariatur debitis est.',
