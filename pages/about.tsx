@@ -1,5 +1,6 @@
-import Header from '@/components/common/header'
+import { Header } from '@/components/common'
 import { AdminLayout } from '@/components/layout'
+import { Box, Typography } from '@mui/material'
 // import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -40,8 +41,10 @@ export default function AboutPage(props: AboutPageProps) {
   }, [page])
 
   return (
-    <div>
-      <h1>About Page</h1>
+    <Box>
+      <Typography component="h1" variant="h3" color="primary.main">
+        About Page
+      </Typography>
 
       <Header />
 
@@ -52,7 +55,7 @@ export default function AboutPage(props: AboutPageProps) {
       </ul>
 
       <button onClick={handleNextClick}>Next page</button>
-    </div>
+    </Box>
   )
 }
 
