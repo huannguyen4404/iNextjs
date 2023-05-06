@@ -15,7 +15,10 @@ export function HeaderDesktop(props: HeaderDesktopProps) {
         <Stack direction="row" justifyContent="flex-end">
           {ROUTE_LIST.map((route) => (
             <Link key={route.path} href={route.path} passHref legacyBehavior>
-              <LinkMui sx={{ ml: 2 }} className={clsx({ active: router.pathname === route.path })}>
+              <LinkMui
+                sx={{ ml: 2, fontWeight: 'medium' }}
+                className={clsx({ active: router.pathname === route.path })}
+              >
                 {route.label}
               </LinkMui>
             </Link>

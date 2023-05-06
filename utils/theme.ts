@@ -1,4 +1,4 @@
-import { Roboto } from 'next/font/google'
+import { Roboto, Heebo } from 'next/font/google'
 import { createTheme } from '@mui/material'
 import { red } from '@mui/material/colors'
 
@@ -9,8 +9,18 @@ export const roboto = Roboto({
   fallback: ['Helvetica', 'Arial', 'sans-serif'],
 })
 
+export const heeboo = Heebo({
+  weight: ['400', '500', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  fallback: ['sans-serif'],
+})
+
 // Create a theme instance.
 export const theme = createTheme({
+  typography: {
+    fontFamily: 'Heebo, sans-serif',
+  },
   palette: {
     primary: {
       main: '#FF6464',
