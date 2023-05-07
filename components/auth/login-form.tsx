@@ -4,12 +4,26 @@ import { Box, Button, IconButton, InputAdornment } from '@mui/material'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { InputField } from '../form'
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
 
 export interface LoginFormProps {
   onSubmit?: (payload: LoginPayload) => void
 }
 
 export function LoginForm({ onSubmit }: LoginFormProps) {
+  const schema = yup.object().shape({
+    username: yup
+      .string()
+      .required('Please enter username')
+      .min(4, 'username requires at least 4 chars'),
+
+    password: yup
+      .string()
+      .required('Please enter password')
+      .min(6, 'password requires at least 6 chars'),
+  })
+
   const [showPassword, setShowPassword] = useState(false)
 
   const { control, handleSubmit } = useForm<LoginPayload>({
@@ -17,6 +31,7 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
       username: '',
       password: '',
     },
+    resolver: yupResolver(schema),
   })
 
   function handleLoginSubmit(payload: LoginPayload) {
