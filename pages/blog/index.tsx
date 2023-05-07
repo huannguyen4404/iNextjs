@@ -18,7 +18,7 @@ export default function BlogPage({ posts }: BlogPageProps) {
         <Box component="ul" sx={{ listStyleType: 'none', p: 0 }}>
           {posts.map((post) => (
             <li key={post.id}>
-              <Link href={`/posts/${post.slug}`}>
+              <Link href={`/blog/${post.slug}`}>
                 <PostItem post={post} />
               </Link>
 
