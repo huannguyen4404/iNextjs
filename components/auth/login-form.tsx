@@ -1,32 +1,25 @@
 import { LoginPayload } from '@/models'
+import { yupResolver } from '@hookform/resolvers/yup'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
-import { Box, Button, IconButton, InputAdornment } from '@mui/material'
+import { Box, Button, CircularProgress, IconButton, InputAdornment } from '@mui/material'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { InputField } from '../form'
-import * as yup from 'yup'
-import { yupResolver } from '@hookform/resolvers/yup'
+import { useLoginForm } from './use-login-form'
 
 export interface LoginFormProps {
   onSubmit?: (payload: LoginPayload) => void
 }
 
 export function LoginForm({ onSubmit }: LoginFormProps) {
-  const schema = yup.object().shape({
-    username: yup
-      .string()
-      .required('Please enter username')
-      .min(4, 'username requires at least 4 chars'),
-
-    password: yup
-      .string()
-      .required('Please enter password')
-      .min(6, 'password requires at least 6 chars'),
-  })
-
+  const { schema } = useLoginForm()
   const [showPassword, setShowPassword] = useState(false)
 
-  const { control, handleSubmit } = useForm<LoginPayload>({
+  const {
+    control,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<LoginPayload>({
     defaultValues: {
       username: '',
       password: '',
@@ -34,16 +27,17 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
     resolver: yupResolver(schema),
   })
 
-  function handleLoginSubmit(payload: LoginPayload) {
-    onSubmit?.(payload)
+  async function handleLoginSubmit(payload: LoginPayload) {
+    await onSubmit?.(payload)
   }
 
   return (
     <Box component="form" onSubmit={handleSubmit(handleLoginSubmit)}>
-      <InputField name="username" control={control} />
+      <InputField name="username" label="Username" control={control} />
       <InputField
         type={showPassword ? 'text' : 'password'}
         name="password"
+        label="Password"
         control={control}
         InputProps={{
           endAdornment: (
@@ -60,7 +54,14 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
         }}
       />
 
-      <Button variant="contained" type="submit">
+      <Button
+        disabled={isSubmitting}
+        startIcon={isSubmitting ? <CircularProgress color="inherit" size="1em" /> : ''}
+        variant="contained"
+        type="submit"
+        fullWidth
+        sx={{ mt: 3 }}
+      >
         Login
       </Button>
     </Box>
