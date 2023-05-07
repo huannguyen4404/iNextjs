@@ -1,3 +1,5 @@
+import { MetaSeo } from '@/components/common'
+import { MainLayout } from '@/components/layout'
 import { Post } from '@/models'
 import { MDManager } from '@/services/md-manager'
 import { Box, Container } from '@mui/material'
@@ -16,6 +18,17 @@ export default function SinglePostPage({ post }: SinglePostPageProps) {
 
   return (
     <Box>
+      <MetaSeo
+        data={{
+          title: `${post.title}`,
+          description: post.description,
+          url: `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/blog/${post.slug}`,
+          thumbnailUrl:
+            post.thumbnailUrl ||
+            'https://res.cloudinary.com/dqn5e9sdo/image/upload/v1683386219/iNextjs/happy_jnn5iy.png',
+        }}
+      />
+
       <Container>
         <p>{post.title}</p>
         <p>{post.author?.name}</p>
@@ -28,6 +41,8 @@ export default function SinglePostPage({ post }: SinglePostPageProps) {
     </Box>
   )
 }
+
+SinglePostPage.Layout = MainLayout
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const postList = await MDManager.getAllPosts()

@@ -30,6 +30,7 @@ export const MDManager = {
       postList.push({
         id: fileName,
         slug: data.slug,
+        thumbnailUrl: data.image || null,
         title: data.title,
         author: {
           name: data.author,
