@@ -1,8 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import httpProxy, { ProxyResCallback } from 'http-proxy'
 import Cookies from 'cookies'
+import httpProxy, { ProxyResCallback } from 'http-proxy'
 
 type Data = {
   message: string
@@ -51,7 +51,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
             expires: new Date(expiredAt),
           })
           ;(res as NextApiResponse).status(200).json({ message: 'OK' })
-        } catch (error) {
+          // mock for test toast error
+          // ;(res as NextApiResponse).status(400).json({ message: 'wrong username or password' })
+        } catch (error: unknown) {
           ;(res as NextApiResponse).status(500).json({ message: 'Something went wrong' })
         }
 

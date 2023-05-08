@@ -4,6 +4,8 @@ import { createEmotionCache, theme } from '@/utils'
 import { CacheProvider } from '@emotion/react'
 import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeProvider } from '@mui/material/styles'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { SWRConfig } from 'swr'
 import { AppPropsWithLayout } from '../models'
 import '../styles/globals.css'
@@ -25,6 +27,7 @@ function MyApp({
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        <ToastContainer />
 
         <SWRConfig value={{ fetcher: (url) => axiosClient.get(url), shouldRetryOnError: false }}>
           <Layout>
