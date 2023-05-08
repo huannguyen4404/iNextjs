@@ -2,7 +2,7 @@ import { MainLayout } from '@/components/layout'
 import { WorkList } from '@/components/work'
 import { useWorkList } from '@/hooks/use-work-list'
 import { ListParams } from '@/models'
-import { Box, Button, Container, LinearProgress, Typography } from '@mui/material'
+import { Box, Button, Container, Typography } from '@mui/material'
 import { useState } from 'react'
 
 export interface WorksPageProps {}
@@ -36,7 +36,7 @@ export default function WorksPage(props: WorksPageProps) {
           </Typography>
         </Box>
 
-        {isLoading ? <LinearProgress /> : <WorkList workList={data?.data || []} />}
+        <WorkList workList={data?.data || []} loading={isLoading} />
 
         <Box>
           <Button variant="contained" onClick={handlePrevClick}>
