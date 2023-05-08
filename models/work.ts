@@ -6,5 +6,5 @@ export interface Work {
   fullDescription: string
   createdAt: string
   updatedAt: string
-  thumbUrl: string
+  thumbnailUrl: string
 }

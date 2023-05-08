@@ -1,6 +1,6 @@
 import { Work } from '@/models'
 import { Box, Chip, Stack, Typography } from '@mui/material'
-import Image from "next/image"
+import Image from 'next/image'
 
 export interface WorkCardProps {
   work: Work
@@ -11,15 +11,16 @@ export function WorkCard({ work }: WorkCardProps) {
     <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
       <Box width={{ xs: '100%', sm: '246px' }} flexShrink={0}>
         <Image
-          src={work.thumbUrl}
+          src={work.thumbnailUrl}
           width={246}
           height={180}
           alt="work thumbnal"
           sizes="100vw"
           style={{
-            width: "100%",
-            height: "auto"
-          }} />
+            width: '100%',
+            height: 'auto',
+          }}
+        />
       </Box>
 
       <Box>
@@ -41,5 +42,5 @@ export function WorkCard({ work }: WorkCardProps) {
         <Typography>{work.shortDescription}</Typography>
       </Box>
     </Stack>
-  );
+  )
 }
