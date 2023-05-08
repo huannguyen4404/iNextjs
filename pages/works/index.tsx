@@ -2,28 +2,22 @@ import { MainLayout } from '@/components/layout'
 import { WorkList } from '@/components/work'
 import { useWorkList } from '@/hooks/use-work-list'
 import { ListParams } from '@/models'
-import { Box, Button, Container, Typography } from '@mui/material'
-import { useState } from 'react'
+import { Box, Container, Pagination, Stack, Typography } from '@mui/material'
+import { ChangeEvent, useState } from 'react'
 
 export interface WorksPageProps {}
 
 export default function WorksPage(props: WorksPageProps) {
   const [filters, setFilters] = useState<Partial<ListParams>>({ _page: 1, _limit: 3 })
-
   const { data, isLoading } = useWorkList({ params: filters })
-  console.log({ data, isLoading })
 
-  function handlePrevClick() {
+  const { _limit, _totalRows, _page } = data?.pagination || {}
+  const totalPages = _totalRows ? Math.ceil(_totalRows / _limit) : 0
+
+  function handlePageChange(event: ChangeEvent<unknown>, value: number): any {
     setFilters((prevFilter) => ({
       ...prevFilter,
-      _page: (prevFilter?._page || 0) - 1,
-    }))
-  }
-
-  function handleNextClick() {
-    setFilters((prevFilter) => ({
-      ...prevFilter,
-      _page: (prevFilter?._page || 0) + 1,
+      _page: value,
     }))
   }
 
@@ -38,15 +32,11 @@ export default function WorksPage(props: WorksPageProps) {
 
         <WorkList workList={data?.data || []} loading={isLoading} />
 
-        <Box>
-          <Button variant="contained" onClick={handlePrevClick}>
-            Prev page
-          </Button>
-
-          <Button variant="contained" onClick={handleNextClick}>
-            Next page
-          </Button>
-        </Box>
+        {totalPages > 0 && (
+          <Stack alignItems="center">
+            <Pagination count={totalPages} page={_page} onChange={handlePageChange} />
+          </Stack>
+        )}
       </Container>
     </Box>
   )
