@@ -1,36 +1,43 @@
+import { LoginForm } from '@/components/auth'
 import { useAuth } from '@/hooks'
+import { LoginPayload } from '@/models'
+import { getErrorMessage } from '@/utils'
+import { Box, Paper, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
+import { toast } from 'react-toastify'
 
 export default function LoginPage() {
   const router = useRouter()
-  const { profile, login, logout } = useAuth({ revalidateOnMount: false })
+  const { login } = useAuth({ revalidateOnMount: false })
 
-  async function handleLoginClick() {
+  async function handleLoginSubmit(payload: LoginPayload) {
     try {
-      await login()
-      console.log('redirect to dashboard')
-      router.push('/about')
+      await login(payload)
+      router.push('/')
     } catch (error) {
-      console.log('login failed', error)
+      const message = getErrorMessage(error)
+      console.log('login failed', message)
+      toast.error(message)
     }
   }
-
-  async function handleLogoutClick() {
-    try {
-      await logout()
-      console.log('redirect to login page')
-    } catch (error) {
-      console.log('logout failed', error)
-    }
-  }
-
   return (
-    <div>
-      <h1>Login Page</h1>
-      <p>Profile: {JSON.stringify(profile || {}, null, 4)}</p>
-      <button onClick={handleLoginClick}>Login</button>&nbsp;|&nbsp;
-      <button onClick={handleLogoutClick}>Logout</button>
-      <button onClick={() => router.push('/about')}>Go to About</button>
-    </div>
+    <Box>
+      <Paper
+        elevation={4}
+        sx={{
+          mx: 'auto',
+          mt: 8,
+          p: 4,
+          maxWidth: '480px',
+          textAlign: 'center',
+        }}
+      >
+        <Typography component="h1" variant="h5" mb={3}>
+          iNextJS / Login
+        </Typography>
+
+        <LoginForm onSubmit={handleLoginSubmit} />
+      </Paper>
+    </Box>
   )
 }

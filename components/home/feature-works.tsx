@@ -13,7 +13,7 @@ export function FeatureWorks() {
       shortDescription:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus eaque mollitia accusamus debitis consequatur praesentium laborum deserunt ab ullam inventore eligendi laudantium ipsam assumenda alias non voluptate sed, veniam pariatur?',
       fullDescription: '',
-      thumbUrl:
+      thumbnailUrl:
         'https://res.cloudinary.com/dqn5e9sdo/image/upload/v1683351551/iNextjs/item01_rhzhyh.jpg',
     },
     {
@@ -25,7 +25,7 @@ export function FeatureWorks() {
       shortDescription:
         'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur quo consequatur, harum a praesentium soluta voluptatem, necessitatibus ut nam, aspernatur quidem! Illo magnam amet, quod molestiae reiciendis pariatur debitis est.',
       fullDescription: '',
-      thumbUrl:
+      thumbnailUrl:
         'https://res.cloudinary.com/dqn5e9sdo/image/upload/v1683351551/iNextjs/item02_ocxely.jpg',
     },
     {
@@ -37,7 +37,7 @@ export function FeatureWorks() {
       shortDescription:
         'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur quo consequatur, harum a praesentium soluta voluptatem, necessitatibus ut nam, aspernatur quidem! Illo magnam amet, quod molestiae reiciendis pariatur debitis est.',
       fullDescription: '',
-      thumbUrl:
+      thumbnailUrl:
         'https://res.cloudinary.com/dqn5e9sdo/image/upload/v1683351551/iNextjs/item03_ylsx4q.jpg',
     },
   ]
