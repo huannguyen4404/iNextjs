@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import { Footer } from '../common'
 
 // fix mismatch err by using CSR
-const Header = dynamic(() => import('../common/header').then((mod) => mod.Header), { ssr: false })
+const Header = dynamic(() => import('../common/header'), { ssr: false })
 
 export function MainLayout({ children }: LayoutProps) {
   return (
