@@ -32,7 +32,6 @@ export default function SinglePostPage({ post }: SinglePostPageProps) {
       <Container>
         <p>{post.title}</p>
         <p>{post.author?.name}</p>
-        <p>{post.description}</p>
 
         <div dangerouslySetInnerHTML={{ __html: post.htmlContent || '' }}></div>
       </Container>

@@ -1,6 +1,16 @@
 import { useAuth } from '@/hooks'
 import MenuIcon from '@mui/icons-material/Menu'
-import { Box, Drawer, IconButton, ListItem, ListItemText } from '@mui/material'
+import {
+  Box,
+  Divider,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Typography,
+} from '@mui/material'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { ROUTE_LIST } from './routes'
@@ -43,7 +53,7 @@ export function HeaderMobile(props: HeaderMobileProps) {
       >
         {routeList.map((item, index) => (
           <ListItem key={index} onClick={() => handleMenuClick(item.path)}>
-            <ListItemText primary={item.label} />
+            <ListItemText primary={item.label} sx={{ minWidth: '200px' }} />
           </ListItem>
         ))}
 
