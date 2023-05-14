@@ -13,7 +13,7 @@ import remarkRehype from 'remark-rehype/lib'
 import remarkToc from 'remark-toc'
 import { unified } from 'unified'
 
-const BLOG_CONTENT_PATH = path.join(process.cwd(), 'blog')
+const BLOG_CONTENT_PATH = path.join(process.cwd(), 'contents')
 
 export const MDManager = {
   async getAllPosts(): Promise<Post[]> {

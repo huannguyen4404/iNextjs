@@ -1,16 +1,6 @@
 import { useAuth } from '@/hooks'
 import MenuIcon from '@mui/icons-material/Menu'
-import {
-  Box,
-  Divider,
-  Drawer,
-  IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Typography,
-} from '@mui/material'
+import { Box, Drawer, IconButton, ListItem, ListItemText } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { ROUTE_LIST } from './routes'
