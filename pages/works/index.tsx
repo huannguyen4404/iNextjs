@@ -21,7 +21,7 @@ export default function WorksPage(props: WorksPageProps) {
     search: filters.title_like || '',
   }
 
-  const { data, isLoading } = useWorkList({ params: filters })
+  const { data, isLoading } = useWorkList({ params: filters, enable: router.isReady })
 
   const { _limit, _totalRows, _page } = data?.pagination || {}
   const totalPages = _totalRows ? Math.ceil(_totalRows / _limit) : 0
