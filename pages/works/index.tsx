@@ -1,10 +1,10 @@
 import { MainLayout } from '@/components/layout'
-import { WorkFilters, WorkList } from '@/components/work'
+import { WorkFilters, WorkFiltersSkeleton, WorkList } from '@/components/work'
 import { useWorkList } from '@/hooks/use-work-list'
 import { ListParams, WorkFiltersPayload } from '@/models'
 import { Box, Container, Pagination, Stack, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent } from 'react'
 
 export interface WorksPageProps {}
 
@@ -64,10 +64,12 @@ export default function WorksPage(props: WorksPageProps) {
           </Typography>
         </Box>
 
-        {router.isReady && (
+        {router.isReady ? (
           <WorkFilters initialValues={initFiltersPayload} onSubmit={handleFiltersChange} />
+        ) : (
+          <WorkFiltersSkeleton />
         )}
-        <WorkList workList={data?.data || []} loading={isLoading} />
+        <WorkList workList={data?.data || []} loading={!router.isReady || isLoading} />
 
         {totalPages > 0 && (
           <Stack alignItems="center">
